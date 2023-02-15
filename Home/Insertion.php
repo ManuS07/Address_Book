@@ -9,6 +9,7 @@ $row = $result->fetch_assoc();
 
 if(isset($_POST['AddContacts'])){
     $name = $_POST['fullname'];
+    $avatar = $_POST['avatar'];
     $email = $_POST['EmailId'];
     $mobile = $_POST['mobileNo'];
     $address = $_POST['address'];
@@ -17,7 +18,7 @@ if(isset($_POST['AddContacts'])){
 
    
 
-    $sql = "INSERT INTO contacts (userId,Name,Email,Mobile,Address) VALUES ($userId,'$name','$email','$mobile','$address')";
+    $sql = "INSERT INTO contacts (userId,Avatar,Name,Email,Mobile,Address) VALUES ($userId,'$avatar','$name','$email','$mobile','$address')";
      if($conn->query($sql)===TRUE){
         header("Location: Home.php");
      }

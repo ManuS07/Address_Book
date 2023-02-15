@@ -57,6 +57,7 @@ if(isset($_POST['logout'])){
             
             <th>Sl.No</th>
             <th>Name</th>
+            <th>Avatar</th>
             <th>Email</th>
             <th>Phone Number</th>
             <th>Address</th>
@@ -71,6 +72,7 @@ if(isset($_POST['logout'])){
                     echo " <tr>";
                     echo "<td>".$i++."</td>";
                     echo "<td>". $count['Name']."</td>";
+                    echo "<td><img src='./images/". $count['Avatar']."'height='100' width='150' style='border-radius:50px'/></td>";
                     echo "<td>". $count['Email']."</td>";
                     echo "<td>". $count['Mobile']."</td>";
                     echo "<td>". $count['Address']."</td>";

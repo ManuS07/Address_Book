@@ -65,10 +65,16 @@ if(isset($_POST['viewcontact'])){
                     <div class="col-sm-6 offset-sm-3">
                         <h1 class="text-center" style="color:rgb(39, 114, 226)">Add Contacts</h1>
                         <form action = "Insertion.php" method="post">
+                        
                             <div >
                                 <label>Name</label>
                                 <input type="text" name="fullname" class="form-control" placeholder="Enter  name"
                                     maxlength="50" required>
+                            </div>
+                            <div >
+                                <label>Avatar</label>
+                                <input type="file" name="avatar" class="form-control" placeholder="Choose file"
+                                 required>
                             </div>
                            
                             <div>

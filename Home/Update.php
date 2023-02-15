@@ -8,21 +8,25 @@ if(!isset($_SESSION['mail'])){
 if(isset($_GET['id'])) 
 {
 $id = $_GET['id'];
-$sql = "SELECT  Name, Email, Mobile, Address FROM contacts WHERE contactsId = $id";
+$sql = "SELECT  Name,Avatar, Email, Mobile, Address FROM contacts WHERE contactsId = $id";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 }
 
 if(isset($_POST['Update'])){
     $name = $_POST['fullname'];
+    $avatar = $_POST['avatar'];
     $email = $_POST['EmailId'];
     $mobile = $_POST['mobileNo'];
     $address = $_POST['address'];
-    $sql = "UPDATE contacts SET Name= '$name', Email = '$email', Mobile = '$mobile' , Address = '$address' WHERE contactsId = $id  ";
+    $sql = "UPDATE contacts SET Avatar = '$avatar',Name= '$name', Email = '$email', Mobile = '$mobile' , Address = '$address' WHERE contactsId = $id  ";
     if($conn->query($sql)){
         
         header("Location: http://localhost/ADDRESS_BOOK/Home/View.php");
         exit;
+    }
+    else{
+        echo $conn->error;
     }
    
 
@@ -82,7 +86,12 @@ if(isset($_POST['Update'])){
                             <div >
                                 <label>Name</label>
                                 <input type="text" name="fullname" class="form-control" 
-                                    maxlength="50"  value=<?php echo $row['Name']?> required>
+                                    maxlength="100"  value=<?php echo $row['Name']?> required>
+                            </div>
+                            <div >
+                                <label>Avatar</label>
+                                <input type="file" name="avatar" class="form-control" placeholder="Choose file" value=<?php echo $row['Avatar']?> 
+                                 required>
                             </div>
                            
                             <div>
