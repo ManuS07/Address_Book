@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+}
+.left{
+    margin: 20px  0 0 50px;
+}
+.right{
+    height: 50vh;
+    width: 50vw;
+    display: flex;
+    align-self: center;
+}
+label {
+    padding-bottom: 5px;
+    padding-top: 5px;
+
+}

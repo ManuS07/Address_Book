@@ -1,0 +1,14 @@
+.row {
+    margin-top: 15%;
+}
+
+.sub {
+    margin-top: 10%;
+    margin-left: 40%;
+
+    /* background-color: #4bb5e7; */
+}
+
+.all {
+    display: flex;
+}
