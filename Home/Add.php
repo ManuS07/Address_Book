@@ -77,13 +77,13 @@ if(isset($_POST['AddContacts'])){
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
         <nav class="navbar navbar-expand-lg" style="background-color: #3979d9;" >
-        <div class="container-fluid"  >
+        <div class="container-fluid" >
           <a href = "http://localhost/address_book/Home/Home.php" class="navbar-brand" >Address Book</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="margin-right:70px;">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="margin-right:75px;">
             <li class="nav-item dropdown" >
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -92,7 +92,7 @@ if(isset($_POST['AddContacts'])){
 </svg>
           </a>
           <form method="post">
-            <ul class="dropdown-menu" >
+            <ul class="dropdown-menu" style="padding:0px;">
                 <li><input type="submit" class="dropdown-item" name="viewcontact" value = "View Contacts"/></li>
                 <li><input type="submit" class="dropdown-item" name="close" value = "Logout"/></li>
             </ul>
@@ -112,7 +112,7 @@ if(isset($_POST['AddContacts'])){
                                 <label>Name</label>
                                 <input type="text" name="fullname" class="form-control" placeholder="Enter  name"
                                     maxlength="50" required>
-                                    <span class="error" style="color:red;"><?php echo $name_error; ?></span><br><br>
+                                    <span class="error" style="color:red;"><?php echo $name_error; ?></span>
                             </div>
                             <div >
                                 <label>Avatar</label>
@@ -124,13 +124,13 @@ if(isset($_POST['AddContacts'])){
                                 <label>Email</label>
                                 <input type="text" name="EmailId" class="form-control" placeholder="me@example.com"
                                     minlength="5" maxlength="50" required>
-                                    <span class="error" style="color:red;"><?php echo $email_error; ?></span><br><br>
+                                    <span class="error" style="color:red;"><?php echo $email_error; ?></span>
                             </div>
                             <div>
                                 <label>Mobile Number</label>
                                 <input type="number" name="mobileNo" class="form-control" minlength="5" maxlength="50"
                                     required>
-                                    <span class="error" style="color:red;"><?php echo $phone_error; ?></span><br><br>
+                                    <span class="error" style="color:red;"><?php echo $phone_error; ?></span>
                             </div>
 
                             <div>

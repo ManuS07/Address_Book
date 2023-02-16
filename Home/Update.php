@@ -107,30 +107,29 @@ if(isset($_POST['Update'])){
                         <h1 class="text-center" style="color:rgb(39, 114, 226)">Update Contact</h1>
                         <form  method="post">
                             <div >
+                               
                                 <label>Name</label>
                                 <input type="text" name="fullname" class="form-control" 
-                                    maxlength="100"  value=<?php echo $row['Name']?> required>
-                                    <span class="error" style="color:red;"><?php echo $name_error; ?></span><br><br>
+                                      value = "<?php echo $row['Name'];?>" required>
+                                    <span class="error" style="color:red;"><?php echo $name_error; ?></span>
 
                             </div>
                             <div >
                                 <label>Avatar</label>
-                                <input type="file" name="avatar" class="form-control" placeholder="Choose file" value=<?php echo $row['Avatar']?> 
+                                <input type="file" name="avatar" class="form-control"  value=<?php echo $row['Avatar']?> 
                                  required>
                             </div>
                            
                             <div>
                                 <label>Email</label>
-                                <input type="email" name="EmailId" class="form-control" placeholder="me@example.com"
-                                    minlength="5" maxlength="50" value=<?php echo $row['Email']?> required>
-                                    <span class="error" style="color:red;"><?php echo $email_error; ?></span><br><br>
+                                <input type="email" name="EmailId" class="form-control"  value=<?php echo $row['Email']?> required>
+                                    <span class="error" style="color:red;"><?php echo $email_error; ?></span>
 
                             </div>
                             <div>
                                 <label>Mobile Number</label>
-                                <input type="number" name="mobileNo" class="form-control" minlength="5" maxlength="50"
-                                value=<?php echo $row['Mobile']?> required>
-                                <span class="error" style="color:red;"><?php echo $phone_error; ?></span><br><br>
+                                <input type="number" name="mobileNo" class="form-control" value=<?php echo $row['Mobile']?> required>
+                                <span class="error" style="color:red;"><?php echo $phone_error; ?></span>
 
                             </div>
 

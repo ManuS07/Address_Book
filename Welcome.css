@@ -1,0 +1,10 @@
+body{
+    background-image: url("https://img.freepik.com/premium-vector/blue-phone-book-white-background-phone-icon-telephone-symbol-support-service-icon-vector-stock-illustration_100456-2274.jpg?size=338&ext=jpg&ga=GA1.1.1404390242.1676530365&semt=ais");
+    background-size: 500px 500px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}

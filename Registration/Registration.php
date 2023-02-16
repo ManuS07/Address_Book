@@ -79,27 +79,27 @@ if(isset($_POST['signup'])){
                                 <label>Name</label>
                                 <input type="text" name="full_name" class="form-control" placeholder="Enter  name"
                                     maxlength="50" required>
-                                    <span class="error" style="color:red;"><?php echo $name_error; ?></span><br><br>
+                                    <span class="error" style="color:red;"><?php echo $name_error; ?></span>
                             </div>
                            
                             <div>
                                 <label>Email</label>
                                 <input type="text" name="emailId" class="form-control" placeholder="me@example.com"
                                     minlength="5" maxlength="50" required>
-                                    <span class="error" style="color:red;"><?php echo $email_error; ?></span><br><br>
+                                    <span class="error" style="color:red;"><?php echo $email_error; ?></span>
                             </div>
                             <div>
                                 <label>Mobile Number</label>
                                 <input type="number" name="mobile_no" class="form-control" minlength="10" maxlength="10"
                                     required>
-                                    <span class="error" style="color:red;"><?php echo $mobile_error; ?></span><br><br>
+                                    <span class="error" style="color:red;"><?php echo $mobile_error; ?></span>
                             </div>
 
                             <div>
                                 <label>Password</label>
                                 <input type="password" name="security" class="form-control" minlength="8" maxlength="25"
                                     required>
-                                    <span class="error" style="color:red;"><?php echo $password_error; ?></span><br><br>
+                                    <span class="error" style="color:red;"><?php echo $password_error; ?></span>
                             </div>
                             <div>
             

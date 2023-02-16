@@ -51,7 +51,7 @@ if(isset($_POST['logout'])){
           </div>
         </div>
       </nav>
-    <h1 class="text-center">Contacts</h1>
+    <h1 class="text-center" style="color:rgb(39, 114, 226);margin-top:50px;">Contacts</h1>
     <table class="table table-primary table-striped text-center" style="margin:30px 0 0  90px;width: 85vw;">
         <tr>
             

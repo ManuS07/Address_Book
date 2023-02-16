@@ -31,7 +31,7 @@ if(!isset($_SESSION['mail'])){
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="margin-right:70px;">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="margin-right:75px;">
             <li class="nav-item dropdown" >
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
