@@ -11,6 +11,11 @@ $id = $_GET['id'];
 $sql = "SELECT  Name,Avatar, Email, Mobile, Address FROM contacts WHERE contactsId = $id";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
+$name_error = "";
+$email_error = "";
+$phone_error = "";
+$address_error = "";                              
+$is_valid = true;
 }
 
 if(isset($_POST['Update'])){
@@ -19,7 +24,22 @@ if(isset($_POST['Update'])){
     $email = $_POST['EmailId'];
     $mobile = $_POST['mobileNo'];
     $address = $_POST['address'];
-    $sql = "UPDATE contacts SET Avatar = '$avatar',Name= '$name', Email = '$email', Mobile = '$mobile' , Address = '$address' WHERE contactsId = $id  ";
+
+    if (!preg_match('/^[\p{L} ]+$/u', $name)) {
+        $name_error = "Name must contain only letters";
+        $is_valid = false;
+      }
+      $pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";  
+      if (!preg_match ($pattern, $email) ){  
+              $email_error = "Email is not valid.";  
+             $is_valid = false; 
+      }    
+      if (!preg_match("/^[7-9][0-9]{9}$/", $mobile)) {
+          $phone_error = "Mobile must start with 7, 8 or 9 and contain 10 digits";
+          $is_valid = false;
+        }
+        if($is_valid){
+            $sql = "UPDATE contacts SET Avatar = '$avatar',Name= '$name', Email = '$email', Mobile = '$mobile' , Address = '$address' WHERE contactsId = $id  ";
     if($conn->query($sql)){
         
         header("Location: http://localhost/ADDRESS_BOOK/Home/View.php");
@@ -28,6 +48,9 @@ if(isset($_POST['Update'])){
     else{
         echo $conn->error;
     }
+
+        }
+    
    
 
 
@@ -87,6 +110,8 @@ if(isset($_POST['Update'])){
                                 <label>Name</label>
                                 <input type="text" name="fullname" class="form-control" 
                                     maxlength="100"  value=<?php echo $row['Name']?> required>
+                                    <span class="error" style="color:red;"><?php echo $name_error; ?></span><br><br>
+
                             </div>
                             <div >
                                 <label>Avatar</label>
@@ -98,11 +123,15 @@ if(isset($_POST['Update'])){
                                 <label>Email</label>
                                 <input type="email" name="EmailId" class="form-control" placeholder="me@example.com"
                                     minlength="5" maxlength="50" value=<?php echo $row['Email']?> required>
+                                    <span class="error" style="color:red;"><?php echo $email_error; ?></span><br><br>
+
                             </div>
                             <div>
                                 <label>Mobile Number</label>
                                 <input type="number" name="mobileNo" class="form-control" minlength="5" maxlength="50"
                                 value=<?php echo $row['Mobile']?> required>
+                                <span class="error" style="color:red;"><?php echo $phone_error; ?></span><br><br>
+
                             </div>
 
                             <div>

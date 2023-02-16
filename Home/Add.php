@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 $mail = $_SESSION['mail'];
 if(!isset($_SESSION['mail'])){
@@ -15,6 +14,49 @@ if(isset($_POST['viewcontact'])){
     header("Location: http://localhost/ADDRESS_BOOK/Home/View.php");
     exit;
   }
+  include_once 'C:/XAMPP/htdocs/address_book/Database/db.php';
+$sql1 = "SELECT id FROM users WHERE Email = '$mail'";
+$result = $conn->query($sql1);
+$row = $result->fetch_assoc();
+$name_error = "";
+$email_error = "";
+$phone_error = "";
+$address_error = "";                              
+$is_valid = true;
+
+if(isset($_POST['AddContacts'])){
+    $name = $_POST['fullname'];
+    $avatar = $_POST['avatar'];
+    $email = $_POST['EmailId'];
+    $mobile = $_POST['mobileNo'];
+    $address = $_POST['address'];
+    $userId = $row['id'];
+   
+    if (!preg_match('/^[\p{L} ]+$/u', $name)) {
+      $name_error = "Name must contain only letters";
+      $is_valid = false;
+    }
+    $pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";  
+    if (!preg_match ($pattern, $email) ){  
+            $email_error = "Email is not valid.";  
+           $is_valid = false; 
+    }    
+    if (!preg_match("/^[7-9][0-9]{9}$/", $mobile)) {
+        $phone_error = "Mobile must start with 7, 8 or 9 and contain 10 digits";
+        $is_valid = false;
+      }
+   
+    if($is_valid){
+      $sql = "INSERT INTO contacts (userId,Avatar,Name,Email,Mobile,Address) VALUES ($userId,'$avatar','$name','$email','$mobile','$address')";
+      if($conn->query($sql)===TRUE){
+         header("Location: Home.php");
+      }
+      else{
+       echo "Error: " . $sql . ":-" . $conn->error;
+      }
+
+    }     
+}
 
 ?>
 <!DOCTYPE html>
@@ -64,12 +106,13 @@ if(isset($_POST['viewcontact'])){
                 <div class="row">
                     <div class="col-sm-6 offset-sm-3">
                         <h1 class="text-center" style="color:rgb(39, 114, 226)">Add Contacts</h1>
-                        <form action = "Insertion.php" method="post">
+                        <form  method="post">
                         
                             <div >
                                 <label>Name</label>
                                 <input type="text" name="fullname" class="form-control" placeholder="Enter  name"
                                     maxlength="50" required>
+                                    <span class="error" style="color:red;"><?php echo $name_error; ?></span><br><br>
                             </div>
                             <div >
                                 <label>Avatar</label>
@@ -79,13 +122,15 @@ if(isset($_POST['viewcontact'])){
                            
                             <div>
                                 <label>Email</label>
-                                <input type="email" name="EmailId" class="form-control" placeholder="me@example.com"
+                                <input type="text" name="EmailId" class="form-control" placeholder="me@example.com"
                                     minlength="5" maxlength="50" required>
+                                    <span class="error" style="color:red;"><?php echo $email_error; ?></span><br><br>
                             </div>
                             <div>
                                 <label>Mobile Number</label>
                                 <input type="number" name="mobileNo" class="form-control" minlength="5" maxlength="50"
                                     required>
+                                    <span class="error" style="color:red;"><?php echo $phone_error; ?></span><br><br>
                             </div>
 
                             <div>
@@ -93,6 +138,7 @@ if(isset($_POST['viewcontact'])){
                                 <textarea type="text" name="address" class="form-control"  
                                     required >
                                 </textarea>
+                               
                             </div>
                             <div>
             
