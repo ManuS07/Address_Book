@@ -38,15 +38,17 @@
                                 required>
                         </div>
 
-                        <div class="sub">
+                        <div class="sub" >
                             <input type="submit" name="login" class="btn" id="btn-login"
                                 style="color:white;background-color: rgb(39, 114, 226);padding: 10px;border-radius:15px;"
                                 value="Log in">
-
-
+                            
+                               
+                            
                         </div>
                       
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -57,4 +59,5 @@
 </body>
 
 </html>
+
 
