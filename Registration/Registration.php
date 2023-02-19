@@ -4,15 +4,37 @@ $name_error = "";
 $email_error = "";
 $mobile_error = "";
 $password_error = "";
+$conpassword_error = "";
+$emailId_error="";
 $is_valid = true;
-
+?>
+<script type="text/JavaScript">
+function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+  </script>
+<?php
 if(isset($_POST['signup'])){
     $name = $_POST['full_name'];
     $email = $_POST['emailId'];
     $mobile = $_POST['mobile_no'];
     $password = $_POST['security'];
     
-   
+    $sql = "SELECT id FROM users WHERE Email = '$email'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    if($row){
+        $emailId_error = "Email already used";
+        $is_valid = false;
+
+    }
+
+    
 
     if (!preg_match('/^[\p{L} ]+$/u', $name)) {
         $name_error = "Name must contain only letters";
@@ -25,8 +47,8 @@ if(isset($_POST['signup'])){
       }
   
       
-      if (!preg_match("/^[7-9][0-9]{9}$/", $mobile)) {
-        $mobile_error = "Mobile must start with 7, 8 or 9 and contain 10 digits";
+      if (!preg_match("/^[0-9]{10}$/", $mobile)) {
+        $mobile_error = "Mobile must contain 10 digits";
         $is_valid = false;
       }
   
@@ -34,13 +56,17 @@ if(isset($_POST['signup'])){
         $password_error = "Password must contain at least one upper-case letter, one special character and a minimum of 8 characters";
         $is_valid = false;
       }
+   
 
       if($is_valid){
         $sql = "INSERT INTO users (Name,Email,Mobile,Password) VALUES ('$name','$email','$mobile','$password')";
         $conn->query($sql) ;
+       
      
-        header("Location: http://localhost/ADDRESS_BOOK/Login/Login.php");
-        exit;
+        echo '<script>alert("Registration successful");
+        window.location.href =" http://localhost/ADDRESS_BOOK/Login/Login.php";
+        </script>';
+     
             
 
       }
@@ -97,15 +123,19 @@ if(isset($_POST['signup'])){
 
                             <div>
                                 <label>Password</label>
-                                <input type="password" name="security" class="form-control" minlength="8" maxlength="25"
+                                <input type="password" id= "password" name="security" class="form-control" minlength="8" maxlength="25"
                                     required>
+                                    <input type= "checkbox" onClick = "myFunction()" >Show Password</input><br>
                                     <span class="error" style="color:red;"><?php echo $password_error; ?></span>
                             </div>
+                            
                             <div>
             
                                 <div class="d-grid mt-4">
-                                    <input type="submit" name="signup" class="btn btn-primary shadow" id="btn-login" value="Sign Up"
-                                        style="background-color:rgb(39, 114, 226)">
+                                    <input type="submit" name="signup" class="btn btn-primary shadow" id="btn-login"  value="Sign Up"
+                                        style="background-color:rgb(39, 114, 226)" >
+                                        <span class="error" style="color:red;"><?php echo $emailId_error; ?></span>
+
                                 </div>
 
                         </form>

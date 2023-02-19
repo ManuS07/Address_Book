@@ -77,7 +77,7 @@ if(isset($_POST['logout'])){
                     echo "<td>". $count['Mobile']."</td>";
                     echo "<td>". $count['Address']."</td>";
                     echo "<td><a style='text-decoration:none;' href='Update.php?id=" . $count['contactsId'] . "'>
-                      <button class='btn btn-primary'>Update</button>
+                      <button class='btn btn-primary'>Edit</button>
                     </a>
                     <a style='text-decoration:none;' href='Delete.php?id=" . $count['contactsId'] . "'>
                       <button class='btn btn-danger'>Delete</button>

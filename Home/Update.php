@@ -34,7 +34,7 @@ if(isset($_POST['Update'])){
               $email_error = "Email is not valid.";  
              $is_valid = false; 
       }    
-      if (!preg_match("/^[7-9][0-9]{9}$/", $mobile)) {
+      if (!preg_match("/^[0-9]{10}$/", $mobile)) {
           $phone_error = "Mobile must start with 7, 8 or 9 and contain 10 digits";
           $is_valid = false;
         }
@@ -135,10 +135,7 @@ if(isset($_POST['Update'])){
 
                             <div>
                                 <label>Address</label>
-                                <textarea  name="address" class="form-control" 
-                                required >
-                                <?php echo $row['Address']?> 
-                                </textarea>
+                                <textarea  name="address" class="form-control" required ><?php echo $row['Address']?></textarea>
                             </div>
                             <div>
             

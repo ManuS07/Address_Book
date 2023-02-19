@@ -41,15 +41,18 @@ if(isset($_POST['AddContacts'])){
             $email_error = "Email is not valid.";  
            $is_valid = false; 
     }    
-    if (!preg_match("/^[7-9][0-9]{9}$/", $mobile)) {
-        $phone_error = "Mobile must start with 7, 8 or 9 and contain 10 digits";
+    if (!preg_match("/^[0-9]{10}$/", $mobile)) {
+        $phone_error = "Mobile must contain 10 digits";
         $is_valid = false;
       }
+     
    
     if($is_valid){
       $sql = "INSERT INTO contacts (userId,Avatar,Name,Email,Mobile,Address) VALUES ($userId,'$avatar','$name','$email','$mobile','$address')";
       if($conn->query($sql)===TRUE){
-         header("Location: Home.php");
+        echo '<script>alert("Added successfully");
+        window.location.href =" http://localhost/ADDRESS_BOOK/Home/Home.php";
+        </script>';  
       }
       else{
        echo "Error: " . $sql . ":-" . $conn->error;
@@ -128,16 +131,15 @@ if(isset($_POST['AddContacts'])){
                             </div>
                             <div>
                                 <label>Mobile Number</label>
-                                <input type="number" name="mobileNo" class="form-control" minlength="5" maxlength="50"
+                                <input type="number" name="mobileNo" class="form-control" 
                                     required>
                                     <span class="error" style="color:red;"><?php echo $phone_error; ?></span>
                             </div>
 
                             <div>
                                 <label>Address</label>
-                                <textarea type="text" name="address" class="form-control"  
-                                    required >
-                                </textarea>
+                                <textarea type="text" name="address" class="form-control"  required></textarea>
+
                                
                             </div>
                             <div>

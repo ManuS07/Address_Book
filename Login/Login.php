@@ -1,4 +1,38 @@
-
+<?php
+session_start();
+include_once 'C:/XAMPP/htdocs/address_book/Database/db.php';
+$error = "";
+if(isset($_POST['login'])){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+        $sql = "SELECT id,Name FROM users WHERE Email ='$email' AND Password = '$password' ";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        if($row){
+            $_SESSION['mail'] = $email;
+            echo '<script>alert("Login successful");
+            window.location.href =" http://localhost/ADDRESS_BOOK/Home/Home.php";
+            </script>';       
+        }
+        else{
+            $error = "Invalid emailId or password!!!";
+            // header("Location: http://localhost/address_book/Registration/Registration.php");
+            // exit;
+        }
+  
+}
+?>
+<script type="text/JavaScript">
+function showPassword() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+  </script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +59,8 @@
             <div class="row">
                 <div class="col-sm-6 offset-sm-3">
                     <h1 class="text-center" style="color:rgb(39, 114, 226)">Login</h1>
-                    <form action = 'authentication.php' method="post">
+                    <form  method="post">
+                        <span style="color:red;"><?php echo $error; ?></span>
                         <div>
                             <label>Email</label>
                             <input type="email" name="email" class="form-control" placeholder="me@example.com"
@@ -34,12 +69,13 @@
                         <br>
                         <div>
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control" minlength="8" maxlength="25"
+                            <input type="password" name="password" id = "password" class="form-control" minlength="8" maxlength="25"
                                 required>
+                                <input type = "checkbox" onClick="showPassword()">Show Password</input>
                         </div>
 
                         <div class="sub" >
-                            <input type="submit" name="login" class="btn" id="btn-login"
+                            <input type="submit" name="login" class="btn" id="btn-login" 
                                 style="color:white;background-color: rgb(39, 114, 226);padding: 10px;border-radius:15px;"
                                 value="Log in">
                             
