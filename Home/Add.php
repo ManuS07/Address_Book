@@ -26,11 +26,19 @@ $is_valid = true;
 
 if(isset($_POST['AddContacts'])){
     $name = $_POST['fullname'];
-    $avatar = $_POST['avatar'];
+    $avatar = $_FILES["avatar"]["name"];
     $email = $_POST['EmailId'];
     $mobile = $_POST['mobileNo'];
     $address = $_POST['address'];
     $userId = $row['id'];
+
+    $target_dir = "images/";
+    $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+    $extensions_arr = array("jpg","jpeg","png","gif");
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    move_uploaded_file($_FILES["avatar"]["tmp_name"],$target_file);
+     
+    
    
     if (!preg_match('/^[\p{L} ]+$/u', $name)) {
       $name_error = "Name must contain only letters";
@@ -51,15 +59,16 @@ if(isset($_POST['AddContacts'])){
       $sql = "INSERT INTO contacts (userId,Avatar,Name,Email,Mobile,Address) VALUES ($userId,'$avatar','$name','$email','$mobile','$address')";
       if($conn->query($sql)===TRUE){
         echo '<script>alert("Added successfully");
-        window.location.href =" http://localhost/ADDRESS_BOOK/Home/Home.php";
+         window.location.href =" http://localhost/ADDRESS_BOOK/Home/Home.php";
         </script>';  
       }
       else{
        echo "Error: " . $sql . ":-" . $conn->error;
       }
 
-    }     
-}
+    }
+  }     
+  
 
 ?>
 <!DOCTYPE html>
@@ -109,7 +118,7 @@ if(isset($_POST['AddContacts'])){
                 <div class="row">
                     <div class="col-sm-6 offset-sm-3">
                         <h1 class="text-center" style="color:rgb(39, 114, 226)">Add Contacts</h1>
-                        <form  method="post">
+                        <form  method="post" enctype="multipart/form-data">
                         <img id="image" height='100' width='150' style='border-radius:50px;margin-left:250px; margin-top:30px;border:none;'/>
                             <div >
                                 <label>Name</label>
@@ -145,7 +154,7 @@ if(isset($_POST['AddContacts'])){
                             </div>
                             <div>
             
-                                <div class="d-grid mt-4">
+                                <div class="d-grid mt-4 mb-5">
                                     <input type="submit" name="AddContacts"  class="btn btn-primary shadow" id="btn-login" value="Add"
                                         style="background-color:rgb(39, 114, 226)">
                                 </div>
