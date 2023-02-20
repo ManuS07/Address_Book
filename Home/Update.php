@@ -106,6 +106,8 @@ if(isset($_POST['Update'])){
                     <div class="col-sm-6 offset-sm-3">
                         <h1 class="text-center" style="color:rgb(39, 114, 226)">Update Contact</h1>
                         <form  method="post">
+                            <img id="image" height='100' width='150' style='border-radius:50px;margin-left:250px; margin-top:50px;'/>
+
                             <div >
                                
                                 <label>Name</label>
@@ -116,7 +118,7 @@ if(isset($_POST['Update'])){
                             </div>
                             <div >
                                 <label>Avatar</label>
-                                <input type="file" name="avatar" class="form-control"  value=<?php echo $row['Avatar']?> 
+                                <input type="file" name="avatar" class="form-control" onChange="showAvatar()" 
                                  required>
                             </div>
                            
@@ -153,7 +155,10 @@ if(isset($_POST['Update'])){
 </body>
 
 </html>
-<?php
-
-?>
+<script type="text/Javascript">
+  function showAvatar(){
+      image.src=URL.createObjectURL(event.target.files[0]);
+      console.log(image.src);
+  }
+</script>
 

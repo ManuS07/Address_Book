@@ -110,7 +110,7 @@ if(isset($_POST['AddContacts'])){
                     <div class="col-sm-6 offset-sm-3">
                         <h1 class="text-center" style="color:rgb(39, 114, 226)">Add Contacts</h1>
                         <form  method="post">
-                        
+                        <img id="image" height='100' width='150' style='border-radius:50px;margin-left:250px; margin-top:30px;border:none;'/>
                             <div >
                                 <label>Name</label>
                                 <input type="text" name="fullname" class="form-control" placeholder="Enter  name"
@@ -119,8 +119,9 @@ if(isset($_POST['AddContacts'])){
                             </div>
                             <div >
                                 <label>Avatar</label>
-                                <input type="file" name="avatar" class="form-control" placeholder="Choose file"
+                                <input type="file" id="avatar" name="avatar" class="form-control" placeholder="Choose file" onChange="showAvatar()"
                                  required>
+                                 
                             </div>
                            
                             <div>
@@ -159,4 +160,8 @@ if(isset($_POST['AddContacts'])){
 
 </html>
 
-
+<script type="text/Javascript">
+  function showAvatar(){
+      image.src=URL.createObjectURL(event.target.files[0]);
+  }
+</script>
