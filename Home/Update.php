@@ -49,8 +49,9 @@ if(isset($_POST['Update'])){
             $sql = "UPDATE contacts SET Avatar = '$avatar',Name= '$name', Email = '$email', Mobile = '$mobile' , Address = '$address' WHERE contactsId = $id  ";
     if($conn->query($sql)){
         
-        header("Location: http://localhost/ADDRESS_BOOK/Home/View.php");
-        exit;
+        echo '<script>alert("Updated successfully");
+        window.location.href =" http://localhost/ADDRESS_BOOK/Home/View.php";
+       </script>'; 
     }
     else{
         echo $conn->error;
