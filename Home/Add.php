@@ -37,6 +37,8 @@ if(isset($_POST['AddContacts'])){
     $extensions_arr = array("jpg","jpeg","png","gif");
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     move_uploaded_file($_FILES["avatar"]["tmp_name"],$target_file);
+    $imgContent = addslashes(file_get_contents($target_file)); 
+
      
     
    
@@ -56,10 +58,10 @@ if(isset($_POST['AddContacts'])){
      
    
     if($is_valid){
-      $sql = "INSERT INTO contacts (userId,Avatar,Name,Email,Mobile,Address) VALUES ($userId,'$avatar','$name','$email','$mobile','$address')";
+      $sql = "INSERT INTO contacts (userId,Avatar,Avatar_name,Name,Email,Mobile,Address) VALUES ($userId,'$imgContent','$avatar','$name','$email','$mobile','$address')";
       if($conn->query($sql)===TRUE){
         echo '<script>alert("Added successfully");
-         window.location.href =" http://localhost/ADDRESS_BOOK/Home/Home.php";
+        window.location.href =" http://localhost/ADDRESS_BOOK/Home/Home.php";
         </script>';  
       }
       else{

@@ -30,6 +30,7 @@ if(isset($_POST['Update'])){
     $extensions_arr = array("jpg","jpeg","png","gif");
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     move_uploaded_file($_FILES["avatar"]["tmp_name"],$target_file);
+    $imgContent = addslashes(file_get_contents($target_file)); 
      
 
     if (!preg_match('/^[\p{L} ]+$/u', $name)) {
@@ -46,7 +47,7 @@ if(isset($_POST['Update'])){
           $is_valid = false;
         }
         if($is_valid){
-            $sql = "UPDATE contacts SET Avatar = '$avatar',Name= '$name', Email = '$email', Mobile = '$mobile' , Address = '$address' WHERE contactsId = $id  ";
+            $sql = "UPDATE contacts SET Avatar = '$imgContent',Avatar_name='$avatar',Name= '$name', Email = '$email', Mobile = '$mobile' , Address = '$address' WHERE contactsId = $id  ";
     if($conn->query($sql)){
         
         echo '<script>alert("Updated successfully");
